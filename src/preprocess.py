@@ -8,6 +8,9 @@ quality-check -> build evidence -> write outputs -> next line. Only one candidat
 in memory at a time; the only state that grows with N is the set of seen
 candidate_ids (~100 bytes each) used for duplicate detection.
 
+Besides the per-candidate files it writes company_stats.json, a pool-level table
+whose size grows with the number of distinct companies (see company_stats.py).
+
 Record handling policy (never crash the run because of one record):
 * Unparseable JSON, non-object, missing/invalid candidate_id, or duplicate
   candidate_id -> written to invalid_records.jsonl with the raw line and reasons;
@@ -26,6 +29,7 @@ from pathlib import Path
 from typing import Dict, Optional
 
 from . import config
+from .company_stats import CompanyStats
 from .evidence import EVIDENCE_TYPES, build_all_evidence
 from .normalize import normalize_candidate
 from .quality import QUALITY_CODES, run_quality_checks
@@ -75,6 +79,7 @@ def run(candidates_path: Path, output_dir: Path, limit: int = 0,
     evidence_by_level = Counter()
     issue_candidates, issue_occurrences, issue_severity = Counter(), Counter(), {}
     seen_ids: set = set()
+    companies = CompanyStats()
     total = valid = emitted = emitted_invalid = quarantined = flagged = 0
 
     t0 = time.perf_counter()
@@ -131,6 +136,7 @@ def run(candidates_path: Path, output_dir: Path, limit: int = 0,
             out.write("evidence_chunks", unit)
             evidence_by_type[unit["evidence_type"]] += 1
             evidence_by_level[unit["assertion_level"]] += 1
+        companies.add(cand)
         out.write("candidate_summary", summary)
         out.write("behavioral_signals", behavior)
         emitted += 1
@@ -149,7 +155,10 @@ def run(candidates_path: Path, output_dir: Path, limit: int = 0,
             print(f"  processed {total:,} records ({time.perf_counter() - t0:.1f}s)", flush=True)
 
     elapsed = time.perf_counter() - t0
+    write_json(output_dir / config.COMPANY_STATS_FILE, companies.to_json())
     files = out.close()
+    stats_path = output_dir / config.COMPANY_STATS_FILE
+    files[stats_path.name] = {"lines": None, "bytes": stats_path.stat().st_size}
     total_evidence = sum(evidence_by_type.values())
 
     report = {
@@ -167,6 +176,7 @@ def run(candidates_path: Path, output_dir: Path, limit: int = 0,
         "total_evidence": total_evidence,
         "evidence_by_type": dict(evidence_by_type),
         "evidence_by_assertion_level": dict(sorted(evidence_by_level.items())),
+        "distinct_companies": len(companies),
         "candidates_with_any_quality_flag": flagged,
         "data_quality_issues": {
             code: {"candidates": issue_candidates[code], "occurrences": issue_occurrences[code],

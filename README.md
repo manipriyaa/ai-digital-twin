@@ -41,6 +41,7 @@ Options: `--limit N` (0 = all), `--reference-date YYYY-MM-DD` (dataset as-of dat
 | `candidate_summary.jsonl` | One compact row per candidate: current role, location, experience, career stats, logistics, quality-flag codes. |
 | `evidence_chunks.jsonl` | Structured evidence units (profile, career, skill, education, certification, behaviour) with provenance. |
 | `behavioral_signals.jsonl` | All 23 Redrob signals as individual columns (raw values) plus labelled derived fields. |
+| `company_stats.json` | Per-company role counts, start-year histogram, industries, sizes (pool-level reference for impossible tenures). |
 | `invalid_records.jsonl` | Quarantined lines (unparseable, missing/invalid/duplicate ID) with the raw line and reasons. |
 | `preprocessing_report.json` | Counts, validation counters, evidence by type and assertion level, data-quality issues, timing. |
 | `jd_parsed.json` | JD as addressable blocks (`s5.b1` = "Things you absolutely need", first bullet). |

@@ -198,6 +198,20 @@ def test_quality_flags(record):
             "skill_duration_exceeds_experience", "duplicate_role_description"} <= codes
 
 
+def test_expert_skill_without_usage_flag(record):
+    """submission_spec.md honeypot example: 'expert' proficiency with 0 years used."""
+    record["skills"][0].update(proficiency="expert", duration_months=0)
+    flags = run_quality_checks(normalize_candidate(record), [], REF)
+    hit = [f for f in flags if f["code"] == "expert_skill_without_usage"]
+    assert len(hit) == 1 and hit[0]["source_field"] == "skills[0]"
+
+
+def test_no_expert_without_usage_in_real_sample(sample_records):
+    for rec in sample_records:
+        codes = {f["code"] for f in run_quality_checks(normalize_candidate(rec), [], REF)}
+        assert "expert_skill_without_usage" not in codes
+
+
 def test_clean_record_has_no_error_flags(sample_records):
     flags = run_quality_checks(normalize_candidate(sample_records[30]), [], REF)
     assert not [f for f in flags if f["severity"] == "error"]
@@ -228,6 +242,11 @@ def test_sample_preprocessing_with_limit(sample_jsonl, tmp_path):
     for key in ("current_title", "current_company", "location", "years_of_experience", "summary_text",
                 "career_count", "skill_count", "education_count", "behavioral_available", "quality_flags"):
         assert key in summary
+    stats = json.loads((tmp_path / "all" / config.COMPANY_STATS_FILE).read_text())
+    assert stats["company_count"] == report["distinct_companies"] > 0
+    acme = stats["companies"]["acme corp"]
+    assert acme["role_count"] == sum(acme["start_year_histogram"].values())
+    assert stats["companies"]["cognizant"]["is_jd_named_consulting_firm"] is True
     behavior_rows = _read_jsonl(tmp_path / "all" / config.BEHAVIORAL_SIGNALS_FILE)
     assert len(behavior_rows) == 50 and "recruiter_response_rate" in behavior_rows[0]
 
@@ -269,7 +288,7 @@ def test_malformed_records_do_not_crash_the_run(sample_records, tmp_path):
 def test_output_is_deterministic(sample_jsonl, tmp_path):
     reports = [run(sample_jsonl, tmp_path / name) for name in ("a", "b")]
     for name in (config.CANDIDATE_SUMMARY_FILE, config.EVIDENCE_FILE, config.BEHAVIORAL_SIGNALS_FILE,
-                 config.INVALID_RECORDS_FILE):
+                 config.INVALID_RECORDS_FILE, config.COMPANY_STATS_FILE):
         assert (tmp_path / "a" / name).read_bytes() == (tmp_path / "b" / name).read_bytes()
     for r in reports:
         r.pop("run_stats")
@@ -282,3 +301,12 @@ def test_phase1_does_not_implement_later_phases():
                            r"lightgbm|xgboost|sklearn|openai|anthropic|requests|httpx)\b", re.M)
     for path in (ROOT / "src").glob("*.py"):
         assert not forbidden.search(path.read_text(encoding="utf-8")), path.name
+
+
+def test_bundled_validator_accepts_sample_submission():
+    """The official validator and sample are intact (used as the format contract later)."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("validator", config.RAW_DIR / "validate_submission.py")
+    validator = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(validator)
+    assert validator.validate_submission(config.RAW_DIR / "sample_submission.csv") == []

@@ -42,6 +42,7 @@
     "demonstrated": 147,
     "self_described": 50
   },
+  "distinct_companies": 23,
   "candidates_with_any_quality_flag": 31,
   "data_quality_issues": {
     "skill_duration_exceeds_experience": {
@@ -78,7 +79,7 @@
   "output_files": {
     "candidate_summary.jsonl": {
       "lines": 50,
-      "bytes": 81155
+      "bytes": 82305
     },
     "evidence_chunks.jsonl": {
       "lines": 1161,
@@ -91,12 +92,16 @@
     "invalid_records.jsonl": {
       "lines": 0,
       "bytes": 0
+    },
+    "company_stats.json": {
+      "lines": null,
+      "bytes": 10336
     }
   },
   "run_stats": {
     "seconds": 0.061,
-    "records_per_sec": 813.9,
-    "evidence_per_sec": 18898.4,
-    "peak_rss_mb": 13.1
+    "records_per_sec": 815.2,
+    "evidence_per_sec": 18928.2,
+    "peak_rss_mb": 13.3
   }
 }

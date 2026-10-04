@@ -63,6 +63,7 @@ def build_candidate_summary(cand: dict, source_line: int, schema_valid: bool, sc
     summary.update(_career_stats(cand, reference_date))
     summary.update({
         "skill_count": len(cand["skills"]),
+        "expert_skill_count": sum(1 for s in cand["skills"] if s["proficiency"] == "expert"),
         "education_count": len(cand["education"]),
         "certification_count": len(cand["certifications"]),
         "languages": [l["language"] for l in cand["languages"] if l["language"]],

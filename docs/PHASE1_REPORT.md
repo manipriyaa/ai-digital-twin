@@ -2,17 +2,18 @@
 
 ## 1. What was implemented
 
-* **Dataset inspection** of the provided files (schema, JD, README, signals doc, 50 sample candidates), written up in [`DATASET_NOTES.md`](DATASET_NOTES.md).
+* **Dataset inspection** of all provided bundle files: schema, JD, README, signals doc, submission spec, validator, sample submission, metadata template and 50 sample candidates. Written up in [`DATASET_NOTES.md`](DATASET_NOTES.md), with submission rules checked against the spec and validator.
 * **Streaming preprocessor** (`python -m src.preprocess`). Parse → validate → normalise → quality-check → evidence → write, one candidate at a time. Accepts `.jsonl`, `.jsonl.gz` and the small `.json` sample array. `--limit N` (0 = all).
 * **Schema validation** compiled from the provided `candidate_schema.json`. Parity-tested against the reference `jsonschema` library and 14.6× faster than it (2,000 records: 0.135 s vs 1.975 s). Patterns use ECMA end-of-input semantics, so `"CAND_0000001\n"` is rejected.
 * **Validation counters** and a **quarantine file** for records that cannot be safely emitted.
 * **Conservative normalisation** (whitespace, Unicode NFC, ISO dates; null for unknown values).
 * **Structured evidence units** with provenance and an **assertion level** for profile, career, skill, education, certification and behaviour.
 * **Candidate summaries** (compact) and a **flat behavioural-signal table** (23 signals as individual columns).
-* **Data-quality checks**: 25 flag codes; flags only, no deletion.
+* **Data-quality checks**: 26 flag codes; flags only, no deletion. This includes the spec's own honeypot example, "expert" skills with under a year of use.
+* **Company statistics** (`company_stats.json`): per company, the pool's role-start-year histogram, industries and sizes. This is the reference for the spec's other honeypot example, "8 years at a company founded 3 years ago".
 * **JD parser** for the actual `job_description.docx` (stdlib only), with addressable blocks.
 * **Requirement map**: 24 requirements defined as data, each grounded in verbatim JD quotes and validated at build time.
-* **Tests**: 53 pytest tests, all passing.
+* **Tests**: 56 pytest tests, all passing. They include a check that the official `validate_submission.py` accepts the bundled sample submission.
 
 ## 2. Dataset size
 
@@ -127,7 +128,7 @@ Full run outputs: `evidence_chunks.jsonl` 1.53 GB (2.32 M lines), `candidate_sum
 * Memory is flat. The only state that grows is the seen-ID set used for duplicate detection.
 * Disk use (1.78 GB) is within the 5 GB intermediate budget. Evidence is 86 % of it.
 * Profiling showed the cost spread across JSON decode/encode, normalisation, evidence building and validation, with no single hotspot left. Optimisations applied, each verified to give byte-identical output: a compiled schema validator with lazily built paths, a substring prefilter plus cached regex for skill mentions, and split/join whitespace collapsing (proven equivalent to `\s+` on 20K adversarial strings).
-* No multiprocessing, per the brief. The work is embarrassingly parallel by line if it is ever needed. Evidence building is an offline step; whether it must also fit inside the 5-minute ranking window depends on `submission_spec.md`, which hasn't been seen yet.
+* No multiprocessing, per the brief. The work is embarrassingly parallel by line if it is ever needed. The spec allows pre-computation to exceed the 5-minute window if it is documented or scripted. Only the step that writes the CSV must fit. Even so, the whole preprocessing (≈ 2 min) could run inside the window if Stage 3 required it.
 
 ## 8. Design decisions
 
@@ -165,7 +166,12 @@ No embeddings, no FAISS/ANN index, no BM25, no reranking, no learning-to-rank/Li
 ## 13. Open items before later phases
 
 1. Upload `candidates.jsonl.gz` and run `--limit 0` on the real pool; record the real counts and flags.
-2. Provide `submission_spec.md`, `validate_submission.py`, `sample_submission.csv` and `submission_metadata_template.yaml` so the constraints can be checked against the source.
+2. ~~Submission spec, validator, sample submission, metadata template~~: provided and documented (DATASET_NOTES §7-8). Implications for later phases:
+   * The written score must be tie-broken by `candidate_id` ascending, because the validator enforces it.
+   * 80 % of the metric weight is on the top 50, so precision at the very top matters most.
+   * Reasoning is checked for specific facts, honest concerns, no hallucination, variety and rank consistency. Evidence IDs and provenance make this possible.
+   * Git history is reviewed for real iteration, so each phase should be its own commit.
+   * A `rank.py` single command, `submission_metadata.yaml` and a sandbox are required deliverables (final phase).
 3. Confirm whether a fuller `redrob_signals_doc` exists (the README mentions trap and envelope sections).
 
 ## 14. What Phase 2 will build

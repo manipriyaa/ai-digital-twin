@@ -39,6 +39,7 @@ CANDIDATES ──► VALIDATE ──► NORMALISE ──► STRUCTURED EVIDENCE 
 | `normalize.py` | Conservative text/title/company/skill/date normalisation; `normalize_candidate()` builds a defensive normalised view. |
 | `evidence.py` | Structured evidence units: profile, career, skill, education, certification, behaviour. |
 | `quality.py` | Data-quality flags (temporal, consistency, range checks). Flags only, never drops. |
+| `company_stats.py` | Pool-level per-company statistics accumulated while streaming (memory grows with the number of companies). |
 | `summary.py` | Compact candidate summary row and flat behavioural-signal row. |
 | `preprocess.py` | Streaming orchestrator and CLI; writes outputs and the preprocessing report. |
 | `jd_parser.py` | Parses `job_description.docx` (or `.md`) into addressable blocks `s<section>.b<block>`. |

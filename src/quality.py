@@ -32,6 +32,7 @@ QUALITY_CODES = {
     "invalid_experience": "years_of_experience missing or outside 0-50.",
     "experience_vs_career_mismatch": "Stated years_of_experience far from summed role durations.",
     "skill_duration_exceeds_experience": "A skill is used for longer than total experience allows.",
+    "expert_skill_without_usage": "'expert' proficiency with under a year of use (spec honeypot example).",
     "career_before_education": "First role starts before any education starts.",
     "education_end_before_start": "Education end_year precedes start_year.",
     "duplicate_role_description": "Identical description text reused across roles.",
@@ -137,6 +138,11 @@ def _check_profile(cand: dict, flags: List[dict]) -> None:
 def _check_skills_education(cand: dict, flags: List[dict]) -> None:
     if not cand["skills"]:
         flags.append(_flag("empty_skills", "warning", "skills", "no skills"))
+    for s in cand["skills"]:
+        if s["proficiency"] == "expert" and s["duration_months"] is not None \
+                and s["duration_months"] < config.EXPERT_MIN_USAGE_MONTHS:
+            flags.append(_flag("expert_skill_without_usage", "warning", f"skills[{s['index']}]",
+                               f"{s['name']}: expert, {s['duration_months']} months used"))
     if not cand["education"]:
         flags.append(_flag("empty_education", "info", "education", "no education"))
     for e in cand["education"]:

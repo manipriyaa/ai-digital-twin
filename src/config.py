@@ -27,6 +27,7 @@ INVALID_RECORDS_FILE = "invalid_records.jsonl"
 PREPROCESSING_REPORT_FILE = "preprocessing_report.json"
 JD_PARSED_FILE = "jd_parsed.json"
 JD_REQUIREMENTS_FILE = "jd_requirements.json"
+COMPANY_STATS_FILE = "company_stats.json"
 
 # "As-of" date of the dataset snapshot, inferred from sample_candidates.json: with
 # the dataset's month convention (days // 30), every current role's duration_months
@@ -53,3 +54,5 @@ DURATION_TOLERANCE_MONTHS = 1
 OVERLAP_TOLERANCE_DAYS = 31
 EXPERIENCE_MISMATCH_TOLERANCE_YEARS = 2.0
 SKILL_DURATION_SLACK_MONTHS = 12
+# submission_spec.md honeypot example: "'expert' proficiency in 10 skills with 0 years used".
+EXPERT_MIN_USAGE_MONTHS = 12

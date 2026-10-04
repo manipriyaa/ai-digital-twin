@@ -14,10 +14,10 @@ Inferences are labelled as such.
 | `README` | ✅ `data/raw/README.docx` | Bundle overview. |
 | `sample_candidates.json` | ✅ `data/raw/sample_candidates.json` | First 50 candidates, pretty-printed JSON array. Converted to `data/samples/sample_candidates.jsonl`. |
 | `candidates.jsonl.gz` | ❌ **not provided yet** | README: 100,000 candidates, gzipped JSONL, ~52 MB compressed / ~465 MB uncompressed. |
-| `submission_spec.md` | ❌ **not provided yet** | Rules, compute constraints, evaluation stages. |
-| `validate_submission.py` | ❌ **not provided yet** | Format validator. |
-| `sample_submission.csv` | ❌ **not provided yet** | Format reference. |
-| `submission_metadata_template.yaml` | ❌ **not provided yet** | Submission metadata. |
+| `submission_spec` (README says `.md`) | ✅ `data/raw/submission_spec.docx` | "Submission Specification — Redrob Hackathon v4" (see §8). |
+| `validate_submission.py` | ✅ `data/raw/validate_submission.py` | Official format validator; accepts `sample_submission.csv` (tested). |
+| `sample_submission.csv` | ✅ `data/raw/sample_submission.csv` | Format reference only; **not consistent with our candidate data** (see §8). |
+| `submission_metadata_template.yaml` | ✅ `data/raw/submission_metadata_template.yaml` | To be copied to the repo root as `submission_metadata.yaml` at submission time. |
 
 SHA-256 of the provided files:
 
@@ -27,6 +27,10 @@ fe5b79aec6f5d01446edbf5e50298eeb651ef5f5d3850f025c6b965e405c43f1  candidate_sche
 35dd1f5d64fc9ef3b2f5d724ce545a8303b6fd4d9c0b91f2824274461627a345  redrob_signals_doc.docx
 b40dea7233c95a9ccce2046ed042d3d2b7a4562f6dabc7c6d59ad31c8e907e8a  README.docx
 b13c6611b32a2418a4fbe4e7b3ec66b0972c569c03d267c360cda914530a5c50  sample_candidates.json
+f639cd41e539df7d63324537f118e6d5d0e6a4afcd2190d4184669223bda6d83  submission_spec.docx
+5b6be0a94befc7c2b53d467d2ba380b3b00d39e46c6020aa00d3879caf4099e7  validate_submission.py
+65700c1dae7ca7ba5284fa981fba182be3d9e1c0553ec53f3e905d20b0d44094  sample_submission.csv
+c97ccd59583c07b5294297d8dddf9e138b814f795e449d410439ffd7dc34a080  submission_metadata_template.yaml
 ```
 
 ## 2. Candidate count
@@ -103,16 +107,56 @@ The signals doc says these signals are meant as "a multiplier or modifier on top
 * `duration_months == (end_date - start_date).days // 30`.
 * For current roles the same rule reproduces `duration_months` exactly for a reference ("as-of") date anywhere in **2026-05-27 … 2026-06-14**. We use **2026-06-01** (`config.DEFAULT_REFERENCE_DATE`, overridable). The latest `last_active_date` in the sample is 2026-05-25.
 
-## 7. Known constraints (from README + JD + task brief)
+## 7. Known constraints (verified against `submission_spec.docx`)
 
-* About 100K candidates; CPU only; no network during ranking; 5 min runtime; 16 GB RAM; 5 GB intermediate disk.
-* Exactly 100 output rows, `candidate_id,rank,score,reasoning`; ranks 1-100 once each; scores non-increasing; deterministic ties; reasoning 1-2 grounded sentences.
-* README traps: **keyword stuffers**, **plain-language "Tier 5"s**, **behavioural twins**, and **~80 honeypots with subtly impossible profiles**. **Honeypot rate > 10 % in the top 100 = disqualified.**
-* Three submissions max, no leaderboard; a sandbox link and interview are part of evaluation.
+| Constraint | Limit |
+|---|---|
+| Runtime of the step that produces the CSV | ≤ 5 min wall-clock |
+| Memory | ≤ 16 GB RAM |
+| Compute | CPU only, no GPU during ranking |
+| Network | Off. No hosted LLM/API calls during ranking. |
+| Intermediate disk | ≤ 5 GB |
 
-## 8. Submission constraints
+* **Pre-computation is allowed outside the 5 minutes** (embeddings, indexes, model weights), but it must be documented or scripted in the repo. "*Pre-computation may exceed the 5-minute window, but the ranking step that produces the CSV must complete within it.*" Stage 3 reproduces the ranking step in a sandboxed Docker container with these exact limits.
+* The spec states it plainly: one LLM call per candidate for 100K candidates will not fit; plan for "a small ranker over precomputed features, indexes, or compact local models".
+* **Reproduce command** shape from the spec and metadata template: `python rank.py --candidates ./candidates.jsonl --out ./submission.csv`. Note it is the uncompressed `.jsonl`; our reader takes both.
+* **Honeypots:** about 80, "*subtly impossible profiles (e.g., 8 years of experience at a company founded 3 years ago; 'expert' proficiency in 10 skills with 0 years used)*". They are forced to relevance tier 0, and a **honeypot rate > 10 % in the top 100 disqualifies** at Stage 3.
+* Other README traps: keyword stuffers, plain-language "Tier 5"s, behavioural twins.
+* Three submissions max; no leaderboard or feedback; scoring happens once after close.
 
-`submission_spec.md` and `validate_submission.py` have **not** been provided, so the exact validator rules are unverified. The README points to spec Sections 2-3 (format), 3 (compute) and 10 (metadata/sandbox). The constraints above come from the task brief and README. We must re-check them against the real spec before Phase-final.
+## 8. Submission constraints (from `submission_spec.docx` and `validate_submission.py`)
+
+**Format** (Stage 1 auto-validator, which rejects on any violation):
+
+* Filename `<participant_id>.csv`, UTF-8.
+* Header exactly `candidate_id,rank,score,reasoning`, then **exactly 100** non-blank data rows of 4 columns.
+* `candidate_id` matches `^CAND_[0-9]{7}$`, is unique, and **must exist in `candidates.jsonl`**.
+* `rank` is an integer written plainly (`str(int(x)) == x`, so no `"01"` or `"1.0"`). Each of 1-100 appears exactly once.
+* `score` parses as a float and is **non-increasing by rank**; ties are allowed.
+* **Tie-break: the validator requires `candidate_id` ascending whenever two adjacent ranks have equal scores.** The spec text also allows "a secondary signal from your model", but the validator only accepts ascending IDs on equal written scores. Rounding scores when writing them can create equal values, so the tie-break must be applied to the *written* score.
+* Common rejections listed in the spec: 99/101 rows, ranks starting at 0, duplicate IDs, unknown IDs, all-equal scores, increasing scores, `.xlsx`/`.json` files.
+
+**Scoring** (hidden ground truth with relevance tiers; "relevant" means tier 3+):
+`composite = 0.50·NDCG@10 + 0.30·NDCG@50 + 0.15·MAP + 0.05·P@10`. Tie-breaks between teams: P@5, then P@10, then earlier timestamp. **80 % of the weight is on the top 50 and half on the top 10.**
+
+**Reasoning column** (optional, but Stage 4 samples 10 rows): it must cite **specific profile facts**, connect to **specific JD requirements**, state **honest concerns**, contain **no hallucinated skills, employers or experience**, **vary** between candidates (no templates), and match the **rank's tone**. Penalised: empty, identical, templated, hallucinated, or rank-contradicting reasoning.
+
+**Evaluation stages:**
+1. Format validation.
+2. Scoring.
+3. Code reproduction plus the honeypot check.
+4. Manual review: reasoning, methodology, **git history authenticity** ("real iteration vs single dump"), code quality, and whether the code is anything more than LLM API calls.
+5. A 30-minute defend-your-work interview.
+
+**Repo deliverables (§10.3):**
+* A README with setup and **one command** that produces the CSV.
+* Full source code, with no manual steps.
+* Pre-computed artifacts, or a script that produces them.
+* `requirements.txt` with versions.
+* `submission_metadata.yaml` at the repo root.
+* A sandbox link (HF Spaces, Streamlit, Colab, Docker, …) that ranks a ≤100-candidate sample within 5 minutes on CPU. A Docker recipe in the README is an accepted fallback.
+
+**`sample_submission.csv` is format-only.** It passes the validator but ranks keyword stuffers (HR Manager, Content Writer…) at the top. Its facts also do not match our records: it calls `CAND_0000002` a "Civil Engineer with 8.0 yrs", while our record is an Operations Manager with 12.5 years. Its IDs only go up to `CAND_0004989`, so it was probably generated from a different (≈5K) pool. **It must not be used as data or labels.**
 
 ## 9. Data-quality observations (50-record sample)
 
@@ -126,6 +170,7 @@ All 50 records pass the schema. Content-level anomalies, which are flagged and n
 | `signup_date` after `last_active_date` | 2 / 50 |
 | First role starts before the first education starts | 2 / 50 |
 | Overlapping roles / duration mismatches / bad dates | 0 / 50 |
+| "expert" skill with < 12 months of use (spec honeypot example) | 0 / 50 (every expert skill in the sample has 12+ months) |
 
 Qualitative observations that matter for design:
 
@@ -137,5 +182,6 @@ Qualitative observations that matter for design:
 * 33 / 50 have `github_activity_score = -1`; 34 / 50 have `offer_acceptance_rate = -1`. These sentinels must not be read as low scores.
 * 40 / 50 have no `skill_assessment_scores`.
 * Countries: India 36, USA 4, UAE 3, UK 2, Germany 2, Australia 2, Canada 1. Locations look like `"City, State"` for India and `"City"` elsewhere.
+* **Company attributes are fixed per company in the data.** For example, Acme Corp is always Manufacturing, 201-500 employees, and Cognizant is always IT Services, 10001+. Each company therefore has a stable identity, and the pool's start-year distribution per company (`company_stats.json`) is the reference for spotting "years at a company that did not exist yet".
 * Education years can be odd relative to the career (e.g. an M.Tech 2017-2022 alongside full-time roles). This is informational only.
-* The signals doc refers to "trap candidates and signal envelopes" (README), but the provided `redrob_signals_doc.docx` has only the 23-signal table. If there is a fuller version, it should be added.
+* The README says the signals doc covers "trap candidates and signal envelopes", but the provided `redrob_signals_doc.docx` has only the 23-signal table. If there is a fuller version, it should be added.
