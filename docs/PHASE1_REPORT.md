@@ -117,8 +117,9 @@ Measured on this 4-core container, single process. The real 100K file was not pr
 | 1,000 | 1,000 | 23,220 | 1.19 s | 840 | 19,515 | 13.4 MB |
 | 10,000 | 10,000 | 232,178 | 12.1 s | 827 | 19,200 | 14.6 MB |
 | 0 (all) | 100,011 | 2,322,164 | **108.9 s** | 918 | 21,325 | **24.3 MB** |
+| 0 (all), with `company_stats` | 100,011 | 2,322,164 | **113.6 s** | 880 | 20,433 | **24.4 MB** |
 
-Full run outputs: `evidence_chunks.jsonl` 1.53 GB (2.32 M lines), `candidate_summary.jsonl` 163 MB, `behavioral_signals.jsonl` 92 MB, `invalid_records.jsonl` 5 lines. Robustness at scale:
+Full run outputs: `evidence_chunks.jsonl` 1.53 GB (2.32 M lines), `candidate_summary.jsonl` 163 MB, `behavioral_signals.jsonl` 92 MB, `invalid_records.jsonl` 5 lines, `company_stats.json` 12 KB. Robustness at scale:
 
 * All 11 injected faults were handled without a crash.
 * 5 were quarantined: bad JSON, non-object, missing ID, invalid ID, duplicate ID.
