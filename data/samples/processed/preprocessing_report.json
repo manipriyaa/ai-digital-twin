@@ -1,0 +1,107 @@
+{
+  "phase": 1,
+  "input_file": "sample_candidates.jsonl",
+  "limit": 0,
+  "reference_date": "2026-06-01",
+  "total_candidates": 50,
+  "valid_candidates": 50,
+  "invalid_candidates": 0,
+  "emitted_candidates": 50,
+  "emitted_schema_invalid_candidates": 0,
+  "quarantined_records": 0,
+  "validation_counters": {
+    "json_parse_error": 0,
+    "not_an_object": 0,
+    "missing_candidate_id": 0,
+    "invalid_candidate_id": 0,
+    "duplicate_candidate_id": 0,
+    "missing_profile": 0,
+    "invalid_profile": 0,
+    "invalid_career_history": 0,
+    "invalid_education": 0,
+    "invalid_skills": 0,
+    "invalid_certifications": 0,
+    "invalid_languages": 0,
+    "invalid_behavioral_signals": 0,
+    "invalid_other": 0,
+    "processing_error": 0
+  },
+  "total_evidence": 1161,
+  "evidence_by_type": {
+    "profile": 150,
+    "career": 147,
+    "skill": 470,
+    "education": 72,
+    "certification": 22,
+    "behavior": 300
+  },
+  "evidence_by_assertion_level": {
+    "behavioral": 300,
+    "credential": 94,
+    "declared": 570,
+    "demonstrated": 147,
+    "self_described": 50
+  },
+  "distinct_companies": 23,
+  "candidates_with_any_quality_flag": 31,
+  "data_quality_issues": {
+    "skill_duration_exceeds_experience": {
+      "candidates": 7,
+      "occurrences": 13,
+      "severity": "warning",
+      "description": "A skill is used for longer than total experience allows."
+    },
+    "career_before_education": {
+      "candidates": 2,
+      "occurrences": 2,
+      "severity": "info",
+      "description": "First role starts before any education starts."
+    },
+    "duplicate_role_description": {
+      "candidates": 15,
+      "occurrences": 21,
+      "severity": "info",
+      "description": "Identical description text reused across roles."
+    },
+    "salary_min_gt_max": {
+      "candidates": 13,
+      "occurrences": 13,
+      "severity": "info",
+      "description": "expected_salary_range_inr_lpa.min > max."
+    },
+    "signup_after_last_active": {
+      "candidates": 2,
+      "occurrences": 2,
+      "severity": "warning",
+      "description": "signup_date is after last_active_date."
+    }
+  },
+  "output_files": {
+    "candidate_summary.jsonl": {
+      "lines": 50,
+      "bytes": 82305
+    },
+    "evidence_chunks.jsonl": {
+      "lines": 1161,
+      "bytes": 761799
+    },
+    "behavioral_signals.jsonl": {
+      "lines": 50,
+      "bytes": 46081
+    },
+    "invalid_records.jsonl": {
+      "lines": 0,
+      "bytes": 0
+    },
+    "company_stats.json": {
+      "lines": null,
+      "bytes": 10336
+    }
+  },
+  "run_stats": {
+    "seconds": 0.061,
+    "records_per_sec": 815.2,
+    "evidence_per_sec": 18928.2,
+    "peak_rss_mb": 13.3
+  }
+}

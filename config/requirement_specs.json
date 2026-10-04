@@ -1,0 +1,1132 @@
+{
+  "_about": "Hand-curated requirement specs for the Senior AI Engineer JD. Every requirement cites verbatim JD text in jd_anchors; src/requirement_map.py fails if an anchor is not found in the parsed job_description.docx. positive_queries = concepts whose presence SUPPORTS fit on the requirement; negative_queries = concepts whose presence CONTRADICTS it (for risk requirements they describe the risk pattern). Negative concepts are retrieval probes for contradicting evidence, not automatic penalties. importance is the JD's stated emphasis (0-1), not a learned weight. Add a requirement by appending an object here; no code changes needed.",
+  "categories": {
+    "technical_must_have": "JD 'Things you absolutely need'.",
+    "technical_preference": "JD 'Things we'd like you to have but won't reject you for'.",
+    "experience": "Kind and setting of past work (applied ML in production, product companies, shipped systems).",
+    "seniority": "Years-of-experience band and senior judgement.",
+    "career_risk": "Patterns the JD says it rejects or will probably reject.",
+    "domain_fit": "Whether the candidate's actual domain matches NLP/IR/ranking rather than adjacent fields or keyword lists.",
+    "logistics": "Location, relocation, notice period.",
+    "behavioral": "Redrob platform availability and responsiveness signals."
+  },
+  "jd_strength_levels": {
+    "must_have": "Listed as absolutely needed.",
+    "preferred": "Nice to have; JD says it will not reject without it.",
+    "ideal_profile": "From 'How to read between the lines' ideal-candidate description.",
+    "disqualifier": "JD: 'we will not move forward'.",
+    "probable_disqualifier": "JD: 'we will probably not move forward'.",
+    "explicit_exclusion": "Listed under 'Things we explicitly do NOT want'.",
+    "soft_preference": "Stated preference with explicit flexibility."
+  },
+  "requirements": [
+    {
+      "requirement_id": "R01",
+      "category": "technical_must_have",
+      "name": "production_embeddings_retrieval",
+      "importance": 1.0,
+      "jd_strength": "must_have",
+      "hard_constraint": false,
+      "description": "Has built and operated embeddings-based retrieval deployed to real users, including operational concerns (embedding drift, index refresh, retrieval-quality regression). The model used does not matter.",
+      "jd_anchors": [
+        "Production experience with embeddings-based retrieval systems (sentence-transformers, OpenAI embeddings, BGE, E5, or similar) deployed to real users.",
+        "we care that you've handled embedding drift, index refresh, retrieval-quality regression in production",
+        "This will involve embeddings, hybrid retrieval, and probably some LLM-based re-ranking"
+      ],
+      "positive_queries": [
+        "built embedding-based retrieval deployed to production users",
+        "semantic search system serving live traffic",
+        "migrated keyword search to embedding-based retrieval",
+        "dense retrieval with sentence-transformers in production",
+        "embedding index refresh and re-indexing pipeline",
+        "monitored embedding drift and retrieval quality regression",
+        "vector retrieval service latency and recall in production",
+        "two-tower or bi-encoder retrieval model shipped",
+        "candidate generation with embeddings for search or recommendations",
+        "embedding-based ranking for product search"
+      ],
+      "negative_queries": [
+        "tutorial on embeddings",
+        "personal side project with embeddings",
+        "toy RAG demo",
+        "course project on semantic search",
+        "proof of concept only, not deployed",
+        "learning about embeddings and vector databases",
+        "experimented with OpenAI embeddings API",
+        "hackathon prototype semantic search",
+        "self-directed Kaggle project"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Embeddings",
+        "Sentence Transformers",
+        "Semantic Search",
+        "RAG",
+        "Information Retrieval",
+        "Dense Retrieval",
+        "BGE",
+        "E5",
+        "OpenAI Embeddings"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R02",
+      "category": "technical_must_have",
+      "name": "production_vector_db_or_hybrid_search",
+      "importance": 1.0,
+      "jd_strength": "must_have",
+      "hard_constraint": false,
+      "description": "Has operated vector databases or hybrid (lexical + dense) search infrastructure in production. Operational experience matters, not the specific product.",
+      "jd_anchors": [
+        "Production experience with vector databases or hybrid search infrastructure",
+        "the specific tech doesn't matter; the operational experience does"
+      ],
+      "positive_queries": [
+        "operated vector database in production",
+        "hybrid search combining BM25 and dense vectors",
+        "Elasticsearch or OpenSearch cluster for search relevance",
+        "FAISS index serving production queries",
+        "approximate nearest neighbor index sharding and scaling",
+        "search infrastructure owned end to end",
+        "Pinecone, Weaviate, Qdrant or Milvus deployment",
+        "reranking layer on top of lexical retrieval",
+        "search latency, index build and capacity planning"
+      ],
+      "negative_queries": [
+        "installed a vector database for a demo",
+        "followed a Pinecone tutorial",
+        "vector database in a side project",
+        "studying vector databases",
+        "only used Elasticsearch for logging",
+        "notebook prototype of nearest neighbor search"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "FAISS",
+        "Pinecone",
+        "Weaviate",
+        "Qdrant",
+        "Milvus",
+        "OpenSearch",
+        "Elasticsearch",
+        "BM25",
+        "Vector Databases",
+        "Hybrid Search",
+        "ChromaDB",
+        "pgvector"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R03",
+      "category": "technical_must_have",
+      "name": "strong_python",
+      "importance": 1.0,
+      "jd_strength": "must_have",
+      "hard_constraint": false,
+      "description": "Writes production-quality Python; the JD stresses code quality.",
+      "jd_anchors": [
+        "Strong Python. Yes really, we care about code quality."
+      ],
+      "positive_queries": [
+        "production Python services",
+        "Python codebase ownership with tests and code review",
+        "built Python ML pipelines and APIs",
+        "PySpark or Python data pipelines in production",
+        "Python packaging, typing, testing"
+      ],
+      "negative_queries": [
+        "beginner Python",
+        "learning Python",
+        "Python scripting for spreadsheets only",
+        "no-code or low-code tools only"
+      ],
+      "evidence_types": [
+        "career",
+        "profile",
+        "skill"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "declared"
+      ],
+      "declared_skill_terms": [
+        "Python",
+        "PySpark",
+        "FastAPI",
+        "Django",
+        "Flask",
+        "pandas",
+        "NumPy"
+      ],
+      "structured_fields": [
+        "redrob_signals.skill_assessment_scores",
+        "redrob_signals.github_activity_score"
+      ],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R04",
+      "category": "technical_must_have",
+      "name": "ranking_evaluation_frameworks",
+      "importance": 1.0,
+      "jd_strength": "must_have",
+      "hard_constraint": false,
+      "description": "Has designed evaluation for ranking/search systems: offline IR metrics (NDCG, MRR, MAP), offline-to-online correlation, A/B test interpretation.",
+      "jd_anchors": [
+        "Hands-on experience designing evaluation frameworks for ranking systems — NDCG, MRR, MAP, offline-to-online correlation, A/B test interpretation.",
+        "Set up the evaluation infrastructure — offline benchmarks, online A/B testing, recruiter-feedback loops"
+      ],
+      "positive_queries": [
+        "designed offline evaluation for ranking with NDCG and MRR",
+        "offline-online correlation analysis for ranking models",
+        "A/B tests for search or recommendation ranking",
+        "relevance labeling pipeline and judgment sets",
+        "built evaluation harness for retrieval quality",
+        "experimentation framework for ranking changes",
+        "recall@k and precision@k benchmarks for retrieval"
+      ],
+      "negative_queries": [
+        "only accuracy on a classification dataset",
+        "never evaluated ranking quality",
+        "evaluation done by another team",
+        "A/B testing for marketing campaigns only"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "NDCG",
+        "MRR",
+        "A/B Testing",
+        "Experimentation",
+        "Ranking Evaluation",
+        "Information Retrieval"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R05",
+      "category": "technical_preference",
+      "name": "llm_fine_tuning",
+      "importance": 0.5,
+      "jd_strength": "preferred",
+      "hard_constraint": false,
+      "description": "Has fine-tuned LLMs (LoRA, QLoRA, PEFT), ideally shipped.",
+      "jd_anchors": [
+        "LLM fine-tuning experience (LoRA, QLoRA, PEFT)"
+      ],
+      "positive_queries": [
+        "fine-tuned and deployed an LLM with LoRA",
+        "QLoRA or PEFT fine-tuning for a production use case",
+        "instruction tuning on domain data",
+        "fine-tuned a cross-encoder or reranker model",
+        "decided when to fine-tune versus prompt"
+      ],
+      "negative_queries": [
+        "fine-tuned a small model as a side project",
+        "LoRA tutorial notebook",
+        "only prompt engineering",
+        "experimented with fine-tuning on Kaggle"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Fine-tuning LLMs",
+        "LoRA",
+        "QLoRA",
+        "PEFT",
+        "LLMs",
+        "Hugging Face Transformers"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R06",
+      "category": "technical_preference",
+      "name": "learning_to_rank",
+      "importance": 0.5,
+      "jd_strength": "preferred",
+      "hard_constraint": false,
+      "description": "Has trained learning-to-rank models (XGBoost/LightGBM-based or neural).",
+      "jd_anchors": [
+        "Experience with learning-to-rank models (XGBoost-based or neural)"
+      ],
+      "positive_queries": [
+        "trained learning-to-rank model for search",
+        "LambdaMART or LightGBM ranker in production",
+        "XGBoost ranking model for a discovery feed",
+        "neural ranking model shipped",
+        "moved from hand-tuned scoring to learned ranking"
+      ],
+      "negative_queries": [
+        "XGBoost for churn classification only",
+        "ranking model in a course project",
+        "rule-based scoring only"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Learning to Rank",
+        "XGBoost",
+        "LightGBM",
+        "LambdaMART",
+        "Ranking"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R07",
+      "category": "experience",
+      "name": "production_applied_ml_experience",
+      "importance": 0.9,
+      "jd_strength": "ideal_profile",
+      "hard_constraint": false,
+      "description": "Several years in applied ML/AI roles shipping to production (ideal: 4-5 of 6-8 years), with pre-LLM-era ML production experience valued.",
+      "jd_anchors": [
+        "of which 4-5 are in applied ML/AI roles at product companies (not pure services)",
+        "We're looking for people who understood retrieval and ranking before it became fashionable.",
+        "Deep technical depth in modern ML systems — embeddings, retrieval, ranking, LLMs, fine-tuning."
+      ],
+      "positive_queries": [
+        "applied machine learning engineer shipping models to production",
+        "owned model training, deployment and monitoring",
+        "ML features serving real users at scale",
+        "production ML pipeline with feature store",
+        "on-call for production ML system"
+      ],
+      "negative_queries": [
+        "ML exposure is adjacent to my main role",
+        "transitioning into AI/ML",
+        "self-learner level in AI",
+        "haven't done ML in a professional capacity",
+        "Kaggle competitions and side projects"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Machine Learning",
+        "MLOps",
+        "Deep Learning",
+        "PyTorch",
+        "TensorFlow",
+        "scikit-learn"
+      ],
+      "structured_fields": [
+        "career_history[].title",
+        "career_history[].duration_months",
+        "career_history[].start_date"
+      ],
+      "structured_criteria": {
+        "ideal_applied_ml_years": [
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "requirement_id": "R08",
+      "category": "experience",
+      "name": "product_company_experience",
+      "importance": 0.7,
+      "jd_strength": "explicit_exclusion",
+      "hard_constraint": false,
+      "description": "Has worked at product companies. A career spent only at consulting / IT-services firms is explicitly not wanted; currently being at one is fine if there is prior product-company experience.",
+      "jd_anchors": [
+        "People who have only worked at consulting firms (TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini, etc.) in their entire career.",
+        "If you're currently at one of these companies but have prior product-company experience, that's fine."
+      ],
+      "positive_queries": [
+        "built features for our own product",
+        "product company engineering team",
+        "worked with product managers on user-facing metrics",
+        "consumer app or SaaS product engineering"
+      ],
+      "negative_queries": [
+        "client delivery at an IT services firm",
+        "consulting engagements for multiple clients",
+        "offshore delivery for client projects",
+        "business analyst at a consulting firm"
+      ],
+      "evidence_types": [
+        "career"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "declared"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "career_history[].company",
+        "career_history[].industry",
+        "summary.jd_named_consulting_roles"
+      ],
+      "structured_criteria": {
+        "jd_named_consulting_firms": [
+          "TCS",
+          "Infosys",
+          "Wipro",
+          "Accenture",
+          "Cognizant",
+          "Capgemini"
+        ],
+        "jd_list_is_exhaustive": false
+      }
+    },
+    {
+      "requirement_id": "R09",
+      "category": "experience",
+      "name": "shipped_search_ranking_recommendation",
+      "importance": 0.9,
+      "jd_strength": "ideal_profile",
+      "hard_constraint": false,
+      "description": "Has shipped at least one end-to-end ranking, search or recommendation system to real users at scale. Plain-language descriptions count (the JD's 'Tier 5' note).",
+      "jd_anchors": [
+        "Has shipped at least one end-to-end ranking, search, or recommendation system to real users at meaningful scale.",
+        "if their career history shows they built a recommendation system at a product company, they're a fit"
+      ],
+      "positive_queries": [
+        "built a recommendation system used by millions of users",
+        "owned the ranking layer for product search",
+        "discovery feed ranking shipped to production",
+        "search relevance improvements measured by A/B test",
+        "personalization system end to end",
+        "matching system between users and items",
+        "improved revenue-per-search with a new ranker"
+      ],
+      "negative_queries": [
+        "recommendation system course project",
+        "MovieLens tutorial recommender",
+        "prototype recommender not launched",
+        "ranking research paper without deployment"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Recommendation Systems",
+        "Search",
+        "Ranking",
+        "Information Retrieval",
+        "Personalization"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R10",
+      "category": "seniority",
+      "name": "experience_band",
+      "importance": 0.6,
+      "jd_strength": "soft_preference",
+      "hard_constraint": false,
+      "description": "5-9 years of experience (ideal 6-8). Explicitly a range, not a requirement: candidates outside the band are considered if other signals are strong.",
+      "jd_anchors": [
+        "Experience Required: 5–9 years",
+        "This is a range, not a requirement.",
+        "6-8 years total experience",
+        "we'll seriously consider candidates outside the band if other signals are strong"
+      ],
+      "positive_queries": [
+        "senior engineer owning systems end to end",
+        "led design of a production system",
+        "mentored junior engineers",
+        "technical decision making for the team"
+      ],
+      "negative_queries": [
+        "entry-level role",
+        "internship",
+        "fresh graduate",
+        "junior engineer learning the basics"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "declared"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "profile.years_of_experience",
+        "summary.sum_role_months",
+        "summary.career_span_months"
+      ],
+      "structured_criteria": {
+        "stated_band_years": [
+          5,
+          9
+        ],
+        "ideal_band_years": [
+          6,
+          8
+        ],
+        "band_is_hard": false
+      }
+    },
+    {
+      "requirement_id": "R11",
+      "category": "career_risk",
+      "name": "recent_production_coding",
+      "importance": 0.8,
+      "jd_strength": "probable_disqualifier",
+      "hard_constraint": false,
+      "description": "Has written production code within the last 18 months. Senior people who moved into architecture / tech-lead roles and stopped coding are probably rejected.",
+      "jd_anchors": [
+        "If you are a senior engineer who hasn't written production code in the last 18 months because you've moved into \"architecture\" or \"tech lead\" roles — we will probably not move forward. This role writes code."
+      ],
+      "positive_queries": [
+        "currently writing production code",
+        "hands-on implementation in current role",
+        "shipped code to production this year",
+        "individual contributor building systems"
+      ],
+      "negative_queries": [
+        "moved into architecture role, no longer coding",
+        "tech lead focused on planning and people management",
+        "manage the team rather than write code",
+        "strategy and stakeholder management role"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "career_history[].is_current",
+        "career_history[].end_date",
+        "evidence.career.months_since_end",
+        "career_history[].title"
+      ],
+      "structured_criteria": {
+        "recency_window_months": 18
+      }
+    },
+    {
+      "requirement_id": "R12",
+      "category": "career_risk",
+      "name": "not_framework_only_llm_profile",
+      "importance": 0.8,
+      "jd_strength": "probable_disqualifier",
+      "hard_constraint": false,
+      "description": "AI experience should not consist mainly of recent (<12 months) LangChain-calls-OpenAI projects or framework tutorials, unless backed by substantial pre-LLM ML production experience. Systems thinking over frameworks.",
+      "jd_anchors": [
+        "If your \"AI experience\" consists primarily of recent (under 12 months) projects using LangChain to call OpenAI — we will probably not move forward, unless you can demonstrate substantial pre-LLM-era ML production experience.",
+        "Framework enthusiasts. If your GitHub is full of LangChain tutorials",
+        "We need people who think about systems, not frameworks."
+      ],
+      "positive_queries": [
+        "pre-LLM machine learning in production",
+        "designed system architecture for retrieval and ranking",
+        "classical ML models deployed before 2023",
+        "trade-offs between retrieval approaches in a system I built"
+      ],
+      "negative_queries": [
+        "built a chatbot with LangChain and OpenAI",
+        "LangChain tutorial",
+        "how I used a hot framework to build a demo",
+        "played with the OpenAI and Anthropic APIs",
+        "built a small RAG side project",
+        "prompt engineering with ChatGPT",
+        "recent GenAI projects only"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "self_described"
+      ],
+      "declared_skill_terms": [
+        "LangChain",
+        "LlamaIndex",
+        "Prompt Engineering",
+        "OpenAI API",
+        "ChatGPT"
+      ],
+      "structured_fields": [
+        "career_history[].start_date"
+      ],
+      "structured_criteria": {
+        "recent_window_months": 12
+      }
+    },
+    {
+      "requirement_id": "R13",
+      "category": "domain_fit",
+      "name": "nlp_ir_over_unrelated_ai_domains",
+      "importance": 0.8,
+      "jd_strength": "explicit_exclusion",
+      "hard_constraint": false,
+      "description": "Primary expertise should include NLP / information retrieval. Computer vision, speech or robotics specialists without significant NLP/IR exposure are explicitly not wanted.",
+      "jd_anchors": [
+        "People whose primary expertise is computer vision, speech, or robotics without significant NLP/IR exposure."
+      ],
+      "positive_queries": [
+        "natural language processing in production",
+        "information retrieval and search relevance",
+        "text classification and entity extraction systems",
+        "query understanding for search",
+        "text embeddings and semantic matching"
+      ],
+      "negative_queries": [
+        "computer vision object detection specialist",
+        "image classification models",
+        "speech recognition and TTS systems",
+        "robotics perception and control",
+        "autonomous driving perception"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "NLP",
+        "Information Retrieval",
+        "Computer Vision",
+        "Object Detection",
+        "Image Classification",
+        "Speech Recognition",
+        "TTS",
+        "Robotics",
+        "OpenCV"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R14",
+      "category": "logistics",
+      "name": "location_relocation_fit",
+      "importance": 0.5,
+      "jd_strength": "soft_preference",
+      "hard_constraint": false,
+      "description": "Pune/Noida preferred but flexible; Hyderabad, Pune, Mumbai, Delhi NCR welcome; relocation from Tier-1 Indian cities welcome; outside India case-by-case with no visa sponsorship.",
+      "jd_anchors": [
+        "Location: Pune/Noida, India (Hybrid — flexible cadence) | Open to relocation candidates from Tier-1 Indian cities",
+        "Location: Pune/Noida-preferred but flexible.",
+        "Candidates in Hyderabad, Pune, Mumbai, Delhi NCR welcome to apply. Outside India: case-by-case, but we don't sponsor work visas.",
+        "Located in or willing to relocate to Noida or Pune."
+      ],
+      "positive_queries": [
+        "based in Pune",
+        "based in Noida",
+        "willing to relocate to Pune or Noida"
+      ],
+      "negative_queries": [
+        "requires visa sponsorship",
+        "not willing to relocate",
+        "remote only from outside India"
+      ],
+      "evidence_types": [
+        "profile",
+        "behavior"
+      ],
+      "supporting_assertion_levels": [
+        "declared",
+        "behavioral"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "profile.location",
+        "profile.country",
+        "redrob_signals.willing_to_relocate",
+        "redrob_signals.preferred_work_mode"
+      ],
+      "structured_criteria": {
+        "preferred_cities_jd": [
+          "Pune",
+          "Noida"
+        ],
+        "welcome_cities_jd": [
+          "Hyderabad",
+          "Pune",
+          "Mumbai",
+          "Delhi NCR"
+        ],
+        "relocation_from_jd": "Tier-1 Indian cities",
+        "outside_india_jd": "case-by-case, no work-visa sponsorship",
+        "interpretation_not_from_jd": {
+          "delhi_ncr_includes": [
+            "Delhi",
+            "New Delhi",
+            "Noida",
+            "Greater Noida",
+            "Gurgaon",
+            "Gurugram",
+            "Ghaziabad",
+            "Faridabad"
+          ],
+          "tier1_indian_cities": [
+            "Mumbai",
+            "Delhi",
+            "Bangalore",
+            "Bengaluru",
+            "Hyderabad",
+            "Chennai",
+            "Kolkata",
+            "Pune",
+            "Ahmedabad"
+          ]
+        }
+      }
+    },
+    {
+      "requirement_id": "R15",
+      "category": "logistics",
+      "name": "notice_period",
+      "importance": 0.4,
+      "jd_strength": "soft_preference",
+      "hard_constraint": false,
+      "description": "Sub-30-day notice preferred; up to 30 days can be bought out; 30+ days still in scope but the bar is higher.",
+      "jd_anchors": [
+        "Notice period: We'd love sub-30-day notice. We can buy out up to 30 days. 30+ day notice candidates are still in scope but the bar gets higher."
+      ],
+      "positive_queries": [
+        "immediate joiner",
+        "short notice period"
+      ],
+      "negative_queries": [
+        "long notice period",
+        "serving 90-day notice"
+      ],
+      "evidence_types": [
+        "behavior"
+      ],
+      "supporting_assertion_levels": [
+        "behavioral"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "redrob_signals.notice_period_days"
+      ],
+      "structured_criteria": {
+        "preferred_max_days": 30,
+        "buyout_days": 30,
+        "over_30_in_scope": true
+      }
+    },
+    {
+      "requirement_id": "R16",
+      "category": "behavioral",
+      "name": "availability_and_responsiveness",
+      "importance": 0.7,
+      "jd_strength": "ideal_profile",
+      "hard_constraint": false,
+      "description": "Active on Redrob or clearly in the job market, and responsive. A perfect-on-paper candidate inactive for ~6 months with ~5% recruiter response rate is not actually available.",
+      "jd_anchors": [
+        "Active on Redrob platform (or has clear signal of being in the job market) so we can actually talk to them.",
+        "a perfect-on-paper candidate who hasn't logged in for 6 months and has a 5% recruiter response rate is, for hiring purposes, not actually available. Down-weight them appropriately."
+      ],
+      "positive_queries": [],
+      "negative_queries": [],
+      "evidence_types": [
+        "behavior"
+      ],
+      "supporting_assertion_levels": [
+        "behavioral"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "redrob_signals.last_active_date",
+        "redrob_signals.open_to_work_flag",
+        "redrob_signals.recruiter_response_rate",
+        "redrob_signals.avg_response_time_hours",
+        "redrob_signals.applications_submitted_30d",
+        "redrob_signals.interview_completion_rate",
+        "redrob_signals.offer_acceptance_rate",
+        "redrob_signals.saved_by_recruiters_30d",
+        "redrob_signals.profile_views_received_30d",
+        "redrob_signals.search_appearance_30d",
+        "redrob_signals.profile_completeness_score",
+        "redrob_signals.verified_email",
+        "redrob_signals.verified_phone",
+        "redrob_signals.linkedin_connected"
+      ],
+      "structured_criteria": {
+        "jd_example_unavailable": {
+          "inactive_months": 6,
+          "recruiter_response_rate": 0.05
+        }
+      },
+      "query_note": "Behavioural requirements are evaluated from structured signals, not text retrieval, so the query lists are intentionally empty."
+    },
+    {
+      "requirement_id": "R17",
+      "category": "career_risk",
+      "name": "title_hopping",
+      "importance": 0.6,
+      "jd_strength": "explicit_exclusion",
+      "hard_constraint": false,
+      "description": "Avoid title-chasers: switching companies about every 1.5 years to climb Senior -> Staff -> Principal. JD wants someone who plans to stay 3+ years.",
+      "jd_anchors": [
+        "If your career trajectory shows you optimizing for \"Senior\" → \"Staff\" → \"Principal\" titles by switching companies every 1.5 years, we're not a fit.",
+        "We need someone who plans to be here for 3+ years."
+      ],
+      "positive_queries": [
+        "long tenure at one company",
+        "grew within the same team over several years"
+      ],
+      "negative_queries": [
+        "joined as Staff engineer after one year elsewhere",
+        "promoted title with each company switch"
+      ],
+      "evidence_types": [
+        "career"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "declared"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "career_history[].duration_months",
+        "career_history[].title",
+        "career_history[].company",
+        "summary.roles_shorter_than_18_months"
+      ],
+      "structured_criteria": {
+        "jd_hop_interval_months": 18,
+        "jd_desired_tenure_years": 3
+      }
+    },
+    {
+      "requirement_id": "R18",
+      "category": "career_risk",
+      "name": "not_research_only",
+      "importance": 1.0,
+      "jd_strength": "disqualifier",
+      "hard_constraint": true,
+      "description": "A career spent only in pure research environments (academic labs, research-only roles) without any production deployment is a stated disqualifier.",
+      "jd_anchors": [
+        "If you've spent your career in pure research environments (academic labs, research-only roles) without any production deployment — we will not move forward. We are explicit about this."
+      ],
+      "positive_queries": [
+        "deployed models to production users",
+        "shipped research into a product",
+        "production engineering ownership"
+      ],
+      "negative_queries": [
+        "research scientist at an academic lab",
+        "PhD research without industry deployment",
+        "published papers, no production systems",
+        "research-only role"
+      ],
+      "evidence_types": [
+        "career",
+        "profile",
+        "education"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "career_history[].title",
+        "career_history[].industry"
+      ],
+      "structured_criteria": {},
+      "hard_constraint_note": "Hard constraint means the JD states it as a disqualifier. Phase 1 does not apply it; later phases must only apply it on clear evidence of an entirely research-only career."
+    },
+    {
+      "requirement_id": "R19",
+      "category": "domain_fit",
+      "name": "role_alignment_not_keyword_list",
+      "importance": 0.9,
+      "jd_strength": "explicit_exclusion",
+      "hard_constraint": false,
+      "description": "Fit must come from actual roles and work, not a skills list. A candidate with all the AI keywords as skills but a non-engineering title (e.g. Marketing Manager) is not a fit.",
+      "jd_anchors": [
+        "The \"right answer\" to this JD is not \"find candidates whose skills section contains the most AI keywords.\" That's a trap we've explicitly built into the dataset.",
+        "A candidate who has all the AI keywords listed as skills but whose title is \"Marketing Manager\" is not a fit, no matter how perfect their skill list looks."
+      ],
+      "positive_queries": [
+        "machine learning engineer role building models",
+        "search engineer working on relevance",
+        "software engineer on recommendation systems"
+      ],
+      "negative_queries": [
+        "marketing manager",
+        "sales and business development",
+        "accountant or finance role",
+        "HR or recruiting coordinator",
+        "operations manager",
+        "customer support lead",
+        "curious about how AI tools could augment my work"
+      ],
+      "evidence_types": [
+        "career",
+        "profile",
+        "skill"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "declared"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "profile.current_title",
+        "career_history[].title"
+      ],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R20",
+      "category": "technical_preference",
+      "name": "hrtech_recruiting_marketplace_exposure",
+      "importance": 0.3,
+      "jd_strength": "preferred",
+      "hard_constraint": false,
+      "description": "Prior exposure to HR-tech, recruiting tech or marketplace products.",
+      "jd_anchors": [
+        "Prior exposure to HR-tech, recruiting tech, or marketplace products"
+      ],
+      "positive_queries": [
+        "recruiting platform",
+        "job matching marketplace",
+        "candidate-job matching",
+        "two-sided marketplace ranking",
+        "HR tech product"
+      ],
+      "negative_queries": [],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "career_history[].industry"
+      ],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R21",
+      "category": "technical_preference",
+      "name": "distributed_systems_inference_optimization",
+      "importance": 0.3,
+      "jd_strength": "preferred",
+      "hard_constraint": false,
+      "description": "Background in distributed systems or large-scale inference optimization.",
+      "jd_anchors": [
+        "Background in distributed systems or large-scale inference optimization"
+      ],
+      "positive_queries": [
+        "optimized model inference latency at scale",
+        "distributed systems for serving",
+        "model quantization and batching for serving",
+        "scaled inference to high QPS"
+      ],
+      "negative_queries": [],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated"
+      ],
+      "declared_skill_terms": [
+        "Kubernetes",
+        "Ray",
+        "Triton",
+        "ONNX",
+        "TensorRT",
+        "vLLM",
+        "Kafka",
+        "Spark"
+      ],
+      "structured_fields": [],
+      "structured_criteria": {}
+    },
+    {
+      "requirement_id": "R22",
+      "category": "technical_preference",
+      "name": "open_source_ai_contributions",
+      "importance": 0.3,
+      "jd_strength": "preferred",
+      "hard_constraint": false,
+      "description": "Open-source contributions in AI/ML.",
+      "jd_anchors": [
+        "Open-source contributions in the AI/ML space"
+      ],
+      "positive_queries": [
+        "open-source maintainer of an ML library",
+        "contributed to open-source AI projects",
+        "released open-source retrieval tooling"
+      ],
+      "negative_queries": [
+        "GitHub full of tutorial repositories"
+      ],
+      "evidence_types": [
+        "career",
+        "profile",
+        "behavior"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "behavioral"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "redrob_signals.github_activity_score"
+      ],
+      "structured_criteria": {
+        "github_activity_sentinel": -1
+      }
+    },
+    {
+      "requirement_id": "R23",
+      "category": "career_risk",
+      "name": "external_validation_of_work",
+      "importance": 0.3,
+      "jd_strength": "explicit_exclusion",
+      "hard_constraint": false,
+      "description": "Not wanted: 5+ years entirely on closed-source proprietary systems with no external validation (papers, talks, open-source).",
+      "jd_anchors": [
+        "People whose work has been entirely on closed-source proprietary systems for 5+ years without external validation (papers, talks, open-source)."
+      ],
+      "positive_queries": [
+        "published paper",
+        "conference talk",
+        "open-source contribution",
+        "technical blog posts about systems built"
+      ],
+      "negative_queries": [
+        "proprietary internal systems only",
+        "work cannot be shared publicly"
+      ],
+      "evidence_types": [
+        "career",
+        "profile",
+        "certification",
+        "behavior"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "self_described",
+        "behavioral"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [
+        "redrob_signals.github_activity_score"
+      ],
+      "structured_criteria": {
+        "years_threshold": 5
+      }
+    },
+    {
+      "requirement_id": "R24",
+      "category": "experience",
+      "name": "shipper_product_mindset",
+      "importance": 0.4,
+      "jd_strength": "soft_preference",
+      "hard_constraint": false,
+      "description": "Scrappy product-engineering attitude: ships working systems quickly and learns from real users; tilts toward shipper over researcher.",
+      "jd_anchors": [
+        "Scrappy product-engineering attitude — willing to ship a working ranker in a week",
+        "we'd rather you tilt slightly toward shipper than toward researcher"
+      ],
+      "positive_queries": [
+        "shipped quickly and iterated with user feedback",
+        "worked closely with product managers on what to build",
+        "early-stage startup engineer owning features end to end"
+      ],
+      "negative_queries": [
+        "prefer well-scoped roles with defined ladder",
+        "only research, no shipping"
+      ],
+      "evidence_types": [
+        "career",
+        "profile"
+      ],
+      "supporting_assertion_levels": [
+        "demonstrated",
+        "self_described"
+      ],
+      "declared_skill_terms": [],
+      "structured_fields": [],
+      "structured_criteria": {}
+    }
+  ],
+  "unmodelled_jd_content": [
+    {
+      "anchor": "We work async-first and write a lot.",
+      "reason": "Writing/culture fit is not observable in the candidate schema."
+    },
+    {
+      "anchor": "We disagree openly and decide quickly.",
+      "reason": "Culture fit; not observable in the candidate schema."
+    },
+    {
+      "anchor": "Has strong opinions about retrieval (hybrid vs dense)",
+      "reason": "Interview-level signal; partially covered by R01/R02/R04/R05 positive queries."
+    },
+    {
+      "anchor": "If you've spent your career at Google or Meta and you want a well-scoped role with a defined ladder, this isn't it.",
+      "reason": "About the candidate's motivation, not their record; big-tech experience itself is not excluded."
+    },
+    {
+      "anchor": "you want to \"just code\" without having to think about product or recruiter workflows or eval frameworks, this also isn't it.",
+      "reason": "Motivation; partially covered by R04 (eval frameworks) and R24 (product mindset)."
+    },
+    {
+      "anchor": "We genuinely believe culture-fit matters more at this stage than skills-fit.",
+      "reason": "Culture fit; not observable in the candidate schema."
+    },
+    {
+      "anchor": "We move fast and break things",
+      "reason": "Culture fit; not observable in the candidate schema."
+    }
+  ]
+}

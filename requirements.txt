@@ -1,0 +1,4 @@
+# Phase 1 runtime uses the Python standard library only (Python >= 3.9).
+# Test-only dependencies:
+pytest>=7
+jsonschema>=4  # reference validator for the schema-parity test (skipped if absent)

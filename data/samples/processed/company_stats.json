@@ -1,0 +1,455 @@
+{
+  "note": "Observed in the candidate pool only; not ground truth about the companies. earliest_start_date can itself come from an impossible (honeypot) profile, so later phases should use the histogram, not the minimum alone.",
+  "company_count": 23,
+  "companies": {
+    "acme corp": {
+      "display_name": "Acme Corp",
+      "role_count": 13,
+      "current_role_count": 3,
+      "earliest_start_date": "2012-04-26",
+      "start_year_histogram": {
+        "2012": 2,
+        "2014": 1,
+        "2015": 1,
+        "2017": 1,
+        "2018": 2,
+        "2019": 1,
+        "2021": 2,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1
+      },
+      "industries": {
+        "Manufacturing": 13
+      },
+      "company_sizes": {
+        "201-500": 13
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "cognizant": {
+      "display_name": "Cognizant",
+      "role_count": 2,
+      "current_role_count": 1,
+      "earliest_start_date": "2022-06-17",
+      "start_year_histogram": {
+        "2022": 1,
+        "2024": 1
+      },
+      "industries": {
+        "IT Services": 2
+      },
+      "company_sizes": {
+        "10001+": 2
+      },
+      "is_jd_named_consulting_firm": true
+    },
+    "cred": {
+      "display_name": "CRED",
+      "role_count": 1,
+      "current_role_count": 1,
+      "earliest_start_date": "2024-02-07",
+      "start_year_histogram": {
+        "2024": 1
+      },
+      "industries": {
+        "Fintech": 1
+      },
+      "company_sizes": {
+        "1001-5000": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "dunder mifflin": {
+      "display_name": "Dunder Mifflin",
+      "role_count": 11,
+      "current_role_count": 3,
+      "earliest_start_date": "2013-01-07",
+      "start_year_histogram": {
+        "2013": 1,
+        "2014": 1,
+        "2015": 1,
+        "2019": 3,
+        "2020": 2,
+        "2022": 2,
+        "2025": 1
+      },
+      "industries": {
+        "Paper Products": 11
+      },
+      "company_sizes": {
+        "201-500": 11
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "flipkart": {
+      "display_name": "Flipkart",
+      "role_count": 1,
+      "current_role_count": 0,
+      "earliest_start_date": "2022-10-15",
+      "start_year_histogram": {
+        "2022": 1
+      },
+      "industries": {
+        "E-commerce": 1
+      },
+      "company_sizes": {
+        "10001+": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "globex inc": {
+      "display_name": "Globex Inc",
+      "role_count": 9,
+      "current_role_count": 3,
+      "earliest_start_date": "2018-07-24",
+      "start_year_histogram": {
+        "2018": 1,
+        "2021": 2,
+        "2022": 2,
+        "2023": 2,
+        "2024": 1,
+        "2025": 1
+      },
+      "industries": {
+        "Manufacturing": 9
+      },
+      "company_sizes": {
+        "501-1000": 9
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "hcl": {
+      "display_name": "HCL",
+      "role_count": 2,
+      "current_role_count": 0,
+      "earliest_start_date": "2021-11-19",
+      "start_year_histogram": {
+        "2021": 2
+      },
+      "industries": {
+        "IT Services": 2
+      },
+      "company_sizes": {
+        "10001+": 2
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "hooli": {
+      "display_name": "Hooli",
+      "role_count": 16,
+      "current_role_count": 3,
+      "earliest_start_date": "2013-07-20",
+      "start_year_histogram": {
+        "2013": 1,
+        "2016": 2,
+        "2017": 2,
+        "2018": 2,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 1,
+        "2023": 3,
+        "2024": 1,
+        "2025": 1
+      },
+      "industries": {
+        "Software": 16
+      },
+      "company_sizes": {
+        "1001-5000": 16
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "infosys": {
+      "display_name": "Infosys",
+      "role_count": 11,
+      "current_role_count": 3,
+      "earliest_start_date": "2014-12-05",
+      "start_year_histogram": {
+        "2014": 1,
+        "2018": 1,
+        "2021": 4,
+        "2022": 1,
+        "2023": 3,
+        "2024": 1
+      },
+      "industries": {
+        "IT Services": 11
+      },
+      "company_sizes": {
+        "10001+": 11
+      },
+      "is_jd_named_consulting_firm": true
+    },
+    "initech": {
+      "display_name": "Initech",
+      "role_count": 10,
+      "current_role_count": 3,
+      "earliest_start_date": "2016-06-04",
+      "start_year_histogram": {
+        "2016": 2,
+        "2017": 1,
+        "2018": 1,
+        "2019": 2,
+        "2021": 1,
+        "2022": 1,
+        "2025": 2
+      },
+      "industries": {
+        "Software": 10
+      },
+      "company_sizes": {
+        "51-200": 10
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "mad street den": {
+      "display_name": "Mad Street Den",
+      "role_count": 1,
+      "current_role_count": 0,
+      "earliest_start_date": "2023-10-10",
+      "start_year_histogram": {
+        "2023": 1
+      },
+      "industries": {
+        "AI/ML": 1
+      },
+      "company_sizes": {
+        "201-500": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "mindtree": {
+      "display_name": "Mindtree",
+      "role_count": 3,
+      "current_role_count": 1,
+      "earliest_start_date": "2019-09-17",
+      "start_year_histogram": {
+        "2019": 2,
+        "2024": 1
+      },
+      "industries": {
+        "IT Services": 3
+      },
+      "company_sizes": {
+        "10001+": 3
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "ola": {
+      "display_name": "Ola",
+      "role_count": 1,
+      "current_role_count": 1,
+      "earliest_start_date": "2021-11-19",
+      "start_year_histogram": {
+        "2021": 1
+      },
+      "industries": {
+        "Transportation": 1
+      },
+      "company_sizes": {
+        "5001-10000": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "pied piper": {
+      "display_name": "Pied Piper",
+      "role_count": 7,
+      "current_role_count": 1,
+      "earliest_start_date": "2012-12-06",
+      "start_year_histogram": {
+        "2012": 1,
+        "2020": 2,
+        "2021": 2,
+        "2024": 1,
+        "2025": 1
+      },
+      "industries": {
+        "Software": 7
+      },
+      "company_sizes": {
+        "11-50": 7
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "razorpay": {
+      "display_name": "Razorpay",
+      "role_count": 1,
+      "current_role_count": 1,
+      "earliest_start_date": "2023-11-09",
+      "start_year_histogram": {
+        "2023": 1
+      },
+      "industries": {
+        "Fintech": 1
+      },
+      "company_sizes": {
+        "1001-5000": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "stark industries": {
+      "display_name": "Stark Industries",
+      "role_count": 11,
+      "current_role_count": 3,
+      "earliest_start_date": "2012-01-11",
+      "start_year_histogram": {
+        "2012": 1,
+        "2014": 1,
+        "2016": 1,
+        "2017": 1,
+        "2018": 1,
+        "2019": 1,
+        "2020": 1,
+        "2022": 3,
+        "2025": 1
+      },
+      "industries": {
+        "Manufacturing": 11
+      },
+      "company_sizes": {
+        "1001-5000": 11
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "swiggy": {
+      "display_name": "Swiggy",
+      "role_count": 3,
+      "current_role_count": 3,
+      "earliest_start_date": "2023-11-09",
+      "start_year_histogram": {
+        "2023": 2,
+        "2025": 1
+      },
+      "industries": {
+        "Food Delivery": 3
+      },
+      "company_sizes": {
+        "5001-10000": 3
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "tcs": {
+      "display_name": "TCS",
+      "role_count": 11,
+      "current_role_count": 3,
+      "earliest_start_date": "2011-12-05",
+      "start_year_histogram": {
+        "2011": 1,
+        "2015": 1,
+        "2017": 2,
+        "2018": 1,
+        "2019": 2,
+        "2021": 1,
+        "2023": 1,
+        "2024": 1,
+        "2025": 1
+      },
+      "industries": {
+        "IT Services": 11
+      },
+      "company_sizes": {
+        "10001+": 11
+      },
+      "is_jd_named_consulting_firm": true
+    },
+    "tech mahindra": {
+      "display_name": "Tech Mahindra",
+      "role_count": 2,
+      "current_role_count": 2,
+      "earliest_start_date": "2022-04-18",
+      "start_year_histogram": {
+        "2022": 1,
+        "2023": 1
+      },
+      "industries": {
+        "IT Services": 2
+      },
+      "company_sizes": {
+        "10001+": 2
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "uber": {
+      "display_name": "Uber",
+      "role_count": 1,
+      "current_role_count": 0,
+      "earliest_start_date": "2021-07-22",
+      "start_year_histogram": {
+        "2021": 1
+      },
+      "industries": {
+        "Transportation": 1
+      },
+      "company_sizes": {
+        "10001+": 1
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "wayne enterprises": {
+      "display_name": "Wayne Enterprises",
+      "role_count": 10,
+      "current_role_count": 4,
+      "earliest_start_date": "2014-09-27",
+      "start_year_histogram": {
+        "2014": 1,
+        "2015": 1,
+        "2016": 1,
+        "2019": 1,
+        "2020": 1,
+        "2021": 1,
+        "2022": 2,
+        "2023": 1,
+        "2024": 1
+      },
+      "industries": {
+        "Conglomerate": 10
+      },
+      "company_sizes": {
+        "10001+": 10
+      },
+      "is_jd_named_consulting_firm": false
+    },
+    "wipro": {
+      "display_name": "Wipro",
+      "role_count": 17,
+      "current_role_count": 10,
+      "earliest_start_date": "2014-03-24",
+      "start_year_histogram": {
+        "2014": 1,
+        "2018": 1,
+        "2021": 2,
+        "2022": 4,
+        "2023": 5,
+        "2024": 1,
+        "2025": 3
+      },
+      "industries": {
+        "IT Services": 17
+      },
+      "company_sizes": {
+        "10001+": 17
+      },
+      "is_jd_named_consulting_firm": true
+    },
+    "zomato": {
+      "display_name": "Zomato",
+      "role_count": 3,
+      "current_role_count": 1,
+      "earliest_start_date": "2019-03-21",
+      "start_year_histogram": {
+        "2019": 1,
+        "2020": 1,
+        "2023": 1
+      },
+      "industries": {
+        "Food Delivery": 3
+      },
+      "company_sizes": {
+        "5001-10000": 3
+      },
+      "is_jd_named_consulting_firm": false
+    }
+  }
+}

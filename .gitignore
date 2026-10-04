@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.DS_Store
+
+# Full candidate pool: large, distributed with the challenge bundle, never committed.
+data/raw/candidates.jsonl
+data/raw/candidates.jsonl.gz
+
+# Full-run outputs (~1.8 GB for 100K candidates). The grounded requirement map and
+# parsed JD are small and deterministic, so they are tracked.
+data/processed/*
+!data/processed/jd_requirements.json
+!data/processed/jd_parsed.json
