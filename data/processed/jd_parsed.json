@@ -1,0 +1,373 @@
+{
+  "source_document": "job_description.docx",
+  "source_sha256": "1e91dd0f5c6e4e1ecf0f5e26aecb9c3a759993ebf463162ec28c9f89b5f228ff",
+  "title": "Job Description: Senior AI Engineer — Founding Team",
+  "role_title": "Senior AI Engineer — Founding Team",
+  "header_fields": {
+    "company": "Redrob AI (Series A AI-native talent intelligence platform)",
+    "location": "Pune/Noida, India (Hybrid — flexible cadence) | Open to relocation candidates from Tier-1 Indian cities",
+    "employment_type": "Full-time",
+    "experience_required": "5–9 years (see \"what we mean by this\" below)"
+  },
+  "header_blocks": [
+    {
+      "block_id": "h.b1",
+      "style": "Normal",
+      "text": "Company: Redrob AI (Series A AI-native talent intelligence platform)"
+    },
+    {
+      "block_id": "h.b2",
+      "style": "Normal",
+      "text": "Location: Pune/Noida, India (Hybrid — flexible cadence) | Open to relocation candidates from Tier-1 Indian cities"
+    },
+    {
+      "block_id": "h.b3",
+      "style": "Normal",
+      "text": "Employment Type: Full-time"
+    },
+    {
+      "block_id": "h.b4",
+      "style": "Normal",
+      "text": "Experience Required: 5–9 years (see \"what we mean by this\" below)"
+    }
+  ],
+  "sections": [
+    {
+      "section_id": "s1",
+      "heading": "Let's be honest about this role",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s1.b1",
+          "style": "Normal",
+          "text": "We're going to write this JD differently from most. We're a Series A company that just raised our round and we're building a new AI Engineering org from scratch. This is the kind of role where the JD changes every six months because the company changes every six months. So instead of pretending we have a fixed checklist, we're going to tell you what we actually need and what we've gotten wrong before."
+        },
+        {
+          "block_id": "s1.b2",
+          "style": "Normal",
+          "text": "If you've spent your career at Google or Meta and you want a well-scoped role with a defined ladder, this isn't it."
+        },
+        {
+          "block_id": "s1.b3",
+          "style": "Normal",
+          "text": "If you've spent your career bouncing between early-stage startups and you want to \"just code\" without having to think about product or recruiter workflows or eval frameworks, this also isn't it."
+        },
+        {
+          "block_id": "s1.b4",
+          "style": "Normal",
+          "text": "We need someone who is simultaneously comfortable with two things that sound contradictory:"
+        },
+        {
+          "block_id": "s1.b5",
+          "style": "ListNumber",
+          "text": "Deep technical depth in modern ML systems — embeddings, retrieval, ranking, LLMs, fine-tuning."
+        },
+        {
+          "block_id": "s1.b6",
+          "style": "ListNumber",
+          "text": "Scrappy product-engineering attitude — willing to ship a working ranker in a week even if the underlying ML is \"obviously suboptimal,\" because we need to learn from real users before we know what to actually optimize for."
+        },
+        {
+          "block_id": "s1.b7",
+          "style": "Normal",
+          "text": "These are not contradictory in real life. They feel contradictory because of how engineering culture sorted itself into \"researcher\" vs \"shipper\" archetypes. We need both modes available in the same person, and we'd rather you tilt slightly toward shipper than toward researcher."
+        }
+      ]
+    },
+    {
+      "section_id": "s2",
+      "heading": "What you'd actually be doing",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s2.b1",
+          "style": "Normal",
+          "text": "The high-level mandate: own the intelligence layer of Redrob's product. That means the ranking, retrieval, and matching systems that decide what recruiters see when they search for candidates and what candidates see when they search for roles."
+        },
+        {
+          "block_id": "s2.b2",
+          "style": "Normal",
+          "text": "In practical terms, your first 90 days will probably look like:"
+        },
+        {
+          "block_id": "s2.b3",
+          "style": "ListBullet",
+          "text": "Weeks 1-3: Audit what we currently have (it's mostly BM25 + rule-based scoring, working but not great). Identify the 3-4 highest-leverage things to fix."
+        },
+        {
+          "block_id": "s2.b4",
+          "style": "ListBullet",
+          "text": "Weeks 4-8: Ship a v2 ranking system that demonstrably improves recruiter-engagement metrics. This will involve embeddings, hybrid retrieval, and probably some LLM-based re-ranking, but the architecture is your call."
+        },
+        {
+          "block_id": "s2.b5",
+          "style": "ListBullet",
+          "text": "Weeks 9-12: Set up the evaluation infrastructure — offline benchmarks, online A/B testing, recruiter-feedback loops — so we can keep improving without flying blind."
+        },
+        {
+          "block_id": "s2.b6",
+          "style": "Normal",
+          "text": "Beyond that, you'll be driving the long-term architecture of how we do candidate-JD matching at scale, mentoring the next round of hires (we're growing the team from 4 to 12 engineers in the next year), and working closely with our recruiter-experience PM on what to build."
+        }
+      ]
+    },
+    {
+      "section_id": "s3",
+      "heading": "What we mean by \"5-9 years\"",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s3.b1",
+          "style": "Normal",
+          "text": "This is a range, not a requirement. Some people hit \"senior engineer\" judgment at 4 years; some never hit it after 15. We've used 5-9 because it's roughly where people we've hired into this kind of role have landed, but we'll seriously consider candidates outside the band if other signals are strong."
+        },
+        {
+          "block_id": "s3.b2",
+          "style": "Normal",
+          "text": "That said, here are the disqualifiers we actually apply:"
+        },
+        {
+          "block_id": "s3.b3",
+          "style": "ListBullet",
+          "text": "If you've spent your career in pure research environments (academic labs, research-only roles) without any production deployment — we will not move forward. We are explicit about this. We've tried it twice and it didn't work for either side."
+        },
+        {
+          "block_id": "s3.b4",
+          "style": "ListBullet",
+          "text": "If your \"AI experience\" consists primarily of recent (under 12 months) projects using LangChain to call OpenAI — we will probably not move forward, unless you can demonstrate substantial pre-LLM-era ML production experience. We're looking for people who understood retrieval and ranking before it became fashionable."
+        },
+        {
+          "block_id": "s3.b5",
+          "style": "ListBullet",
+          "text": "If you are a senior engineer who hasn't written production code in the last 18 months because you've moved into \"architecture\" or \"tech lead\" roles — we will probably not move forward. This role writes code."
+        }
+      ]
+    },
+    {
+      "section_id": "s4",
+      "heading": "The skills inventory (please read carefully)",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s4.b1",
+          "style": "Normal",
+          "text": "Most JDs list 20 skills and you're supposed to have all of them. We're going to do this differently."
+        }
+      ]
+    },
+    {
+      "section_id": "s5",
+      "heading": "Things you absolutely need",
+      "level": 2,
+      "blocks": [
+        {
+          "block_id": "s5.b1",
+          "style": "ListBullet",
+          "text": "Production experience with embeddings-based retrieval systems (sentence-transformers, OpenAI embeddings, BGE, E5, or similar) deployed to real users. We don't care which model — we care that you've handled embedding drift, index refresh, retrieval-quality regression in production."
+        },
+        {
+          "block_id": "s5.b2",
+          "style": "ListBullet",
+          "text": "Production experience with vector databases or hybrid search infrastructure — Pinecone, Weaviate, Qdrant, Milvus, OpenSearch, Elasticsearch, FAISS, or something similar. Again, the specific tech doesn't matter; the operational experience does."
+        },
+        {
+          "block_id": "s5.b3",
+          "style": "ListBullet",
+          "text": "Strong Python. Yes really, we care about code quality."
+        },
+        {
+          "block_id": "s5.b4",
+          "style": "ListBullet",
+          "text": "Hands-on experience designing evaluation frameworks for ranking systems — NDCG, MRR, MAP, offline-to-online correlation, A/B test interpretation. If you've never thought about how to evaluate a ranking system rigorously, this role will be very painful."
+        }
+      ]
+    },
+    {
+      "section_id": "s6",
+      "heading": "Things we'd like you to have but won't reject you for",
+      "level": 2,
+      "blocks": [
+        {
+          "block_id": "s6.b1",
+          "style": "ListBullet",
+          "text": "LLM fine-tuning experience (LoRA, QLoRA, PEFT)"
+        },
+        {
+          "block_id": "s6.b2",
+          "style": "ListBullet",
+          "text": "Experience with learning-to-rank models (XGBoost-based or neural)"
+        },
+        {
+          "block_id": "s6.b3",
+          "style": "ListBullet",
+          "text": "Prior exposure to HR-tech, recruiting tech, or marketplace products"
+        },
+        {
+          "block_id": "s6.b4",
+          "style": "ListBullet",
+          "text": "Background in distributed systems or large-scale inference optimization"
+        },
+        {
+          "block_id": "s6.b5",
+          "style": "ListBullet",
+          "text": "Open-source contributions in the AI/ML space"
+        }
+      ]
+    },
+    {
+      "section_id": "s7",
+      "heading": "Things we explicitly do NOT want",
+      "level": 2,
+      "blocks": [
+        {
+          "block_id": "s7.b1",
+          "style": "Normal",
+          "text": "This is the section most JDs skip but we think it's the most important:"
+        },
+        {
+          "block_id": "s7.b2",
+          "style": "ListBullet",
+          "text": "Title-chasers. If your career trajectory shows you optimizing for \"Senior\" → \"Staff\" → \"Principal\" titles by switching companies every 1.5 years, we're not a fit. We need someone who plans to be here for 3+ years."
+        },
+        {
+          "block_id": "s7.b3",
+          "style": "ListBullet",
+          "text": "Framework enthusiasts. If your GitHub is full of LangChain tutorials and your blog posts are \"How I used [hot framework] to build [demo]\" — that's fine but it's not what we need. We need people who think about systems, not frameworks."
+        },
+        {
+          "block_id": "s7.b4",
+          "style": "ListBullet",
+          "text": "People who have only worked at consulting firms (TCS, Infosys, Wipro, Accenture, Cognizant, Capgemini, etc.) in their entire career. We've had bad fit experiences in both directions. If you're currently at one of these companies but have prior product-company experience, that's fine."
+        },
+        {
+          "block_id": "s7.b5",
+          "style": "ListBullet",
+          "text": "People whose primary expertise is computer vision, speech, or robotics without significant NLP/IR exposure. We respect your work but you'd be re-learning fundamentals here."
+        },
+        {
+          "block_id": "s7.b6",
+          "style": "ListBullet",
+          "text": "People whose work has been entirely on closed-source proprietary systems for 5+ years without external validation (papers, talks, open-source). We need to see how you think, not just trust that you can think."
+        }
+      ]
+    },
+    {
+      "section_id": "s8",
+      "heading": "On location, comp, and logistics",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s8.b1",
+          "style": "ListBullet",
+          "text": "Location: Pune/Noida-preferred but flexible. We have offices in Noida and Pune(mostly used Tue/Thu). We don't require any specific number of in-office days but we expect quarterly travel for offsites. Candidates in Hyderabad, Pune, Mumbai, Delhi NCR welcome to apply. Outside India: case-by-case, but we don't sponsor work visas."
+        },
+        {
+          "block_id": "s8.b2",
+          "style": "ListBullet",
+          "text": "Notice period: We'd love sub-30-day notice. We can buy out up to 30 days. 30+ day notice candidates are still in scope but the bar gets higher."
+        }
+      ]
+    },
+    {
+      "section_id": "s9",
+      "heading": "The vibe check",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s9.b1",
+          "style": "Normal",
+          "text": "We genuinely believe culture-fit matters more at this stage than skills-fit. Skills are teachable; the rest mostly isn't."
+        },
+        {
+          "block_id": "s9.b2",
+          "style": "Normal",
+          "text": "We work async-first and write a lot. If you find writing painful, you'll find this role painful."
+        },
+        {
+          "block_id": "s9.b3",
+          "style": "Normal",
+          "text": "We disagree openly and decide quickly. If you find that style abrasive, you'll find this role abrasive."
+        },
+        {
+          "block_id": "s9.b4",
+          "style": "Normal",
+          "text": "We move fast and break things, with the caveat that \"things\" are usually our internal assumptions, not user-facing systems. If you need a stable, mature codebase to be productive, you'll find this role unstable."
+        }
+      ]
+    },
+    {
+      "section_id": "s10",
+      "heading": "How to read between the lines",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s10.b1",
+          "style": "Normal",
+          "text": "The \"ideal candidate\" we're imagining is roughly:"
+        },
+        {
+          "block_id": "s10.b2",
+          "style": "ListBullet",
+          "text": "6-8 years total experience, of which 4-5 are in applied ML/AI roles at product companies (not pure services)."
+        },
+        {
+          "block_id": "s10.b3",
+          "style": "ListBullet",
+          "text": "Has shipped at least one end-to-end ranking, search, or recommendation system to real users at meaningful scale."
+        },
+        {
+          "block_id": "s10.b4",
+          "style": "ListBullet",
+          "text": "Has strong opinions about retrieval (hybrid vs dense), evaluation (offline vs online), and LLM integration (when to fine-tune vs prompt) — and can defend them with reference to systems they actually built."
+        },
+        {
+          "block_id": "s10.b5",
+          "style": "ListBullet",
+          "text": "Located in or willing to relocate to Noida or Pune."
+        },
+        {
+          "block_id": "s10.b6",
+          "style": "ListBullet",
+          "text": "Active on Redrob platform (or has clear signal of being in the job market) so we can actually talk to them."
+        },
+        {
+          "block_id": "s10.b7",
+          "style": "Normal",
+          "text": "We are aware this is a narrow profile. We're not expecting to find many matches in a 100K candidate pool. We're explicitly OK with that — we'd rather see 10 great matches than 1000 maybes."
+        }
+      ]
+    },
+    {
+      "section_id": "s11",
+      "heading": "Final note for the participants of the Redrob hackathon",
+      "level": 1,
+      "blocks": [
+        {
+          "block_id": "s11.b1",
+          "style": "Normal",
+          "text": "If you're reading this in the context of the Intelligent Candidate Discovery & Ranking Challenge:"
+        },
+        {
+          "block_id": "s11.b2",
+          "style": "Normal",
+          "text": "The \"right answer\" to this JD is not \"find candidates whose skills section contains the most AI keywords.\" That's a trap we've explicitly built into the dataset."
+        },
+        {
+          "block_id": "s11.b3",
+          "style": "Normal",
+          "text": "The right answer involves reasoning about the gap between what the JD says and what the JD means. A Tier 5 candidate may not use the words \"RAG\" or \"Pinecone\" in their profile, but if their career history shows they built a recommendation system at a product company, they're a fit. A candidate who has all the AI keywords listed as skills but whose title is \"Marketing Manager\" is not a fit, no matter how perfect their skill list looks."
+        },
+        {
+          "block_id": "s11.b4",
+          "style": "Normal",
+          "text": "Your ranking system should also weigh behavioral signals — a perfect-on-paper candidate who hasn't logged in for 6 months and has a 5% recruiter response rate is, for hiring purposes, not actually available. Down-weight them appropriately."
+        },
+        {
+          "block_id": "s11.b5",
+          "style": "Normal",
+          "text": "Good luck."
+        }
+      ]
+    }
+  ]
+}
